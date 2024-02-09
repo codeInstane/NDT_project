@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../views/TabsPage.vue'
+import Tab4PageVue from '@/views/Tab4Page.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,7 +27,26 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'tab3',
         component: () => import('@/views/Tab3Page.vue')
+      },
+      {
+        path: 'tab4',
+        component: () => import('@/views/Tab4Page.vue')
+      },
+      {
+        path : '/tabs/tab4',
+        component: Tab4PageVue,
+        children :[
+          {
+            path: '/tabs/tab4',
+            redirect: '/tabs/tab4/folder/Inbox'
+          },
+          {
+            path: '/tabs/tab4/folder/:id',
+            component: () => import ('../views/FolderPage.vue')
+          }
+        ]
       }
+      
     ]
   }
 ]
