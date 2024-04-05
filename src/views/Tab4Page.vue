@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-split-pane content-id="main-content">
-      <ion-menu content-id="main-content" type="overlay">
+       <ion-menu content-id="main-content" type="overlay"  side="end" >
         <ion-content>
           <ion-list id="inbox-list">
             <ion-list-header>Inbox</ion-list-header>
@@ -11,6 +11,7 @@
               <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" :detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
                 <ion-icon aria-hidden="true" slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
+                <ion-icon aria-hidden="true" slot="end" :ios="p.iosArrow" :md="p.mdArrow"></ion-icon>
               </ion-item>
             </ion-menu-toggle>
           </ion-list>
@@ -31,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import './Tab4.css';
+import './Tab4Page.css';
 
 import {
   //IonApp,
@@ -64,6 +65,8 @@ import {
   trashSharp,
   warningOutline,
   warningSharp,
+  arrowForwardCircleOutline,
+  arrowForwardCircleSharp,
 } from 'ionicons/icons';
 
 const selectedIndex = ref(0);
@@ -73,41 +76,53 @@ const appPages = [
     url: '/tabs/tab4/folder/Inbox',
     iosIcon: mailOutline,
     mdIcon: mailSharp,
+    iosArrow: arrowForwardCircleOutline,
+    mdArrow: arrowForwardCircleSharp
   },
   {
     title: 'Outbox',
     url: '/tabs/tab4/folder/Outbox',
     iosIcon: paperPlaneOutline,
     mdIcon: paperPlaneSharp,
+    iosArrow: arrowForwardCircleOutline,
+    mdArrow: arrowForwardCircleSharp
   },
   {
     title: 'Favorites',
     url: '/tabs/tab4/folder/Favorites',
     iosIcon: heartOutline,
     mdIcon: heartSharp,
+    iosArrow: arrowForwardCircleOutline,
+    mdArrow: arrowForwardCircleSharp
   },
   {
     title: 'Archived',
     url: '/tabs/tab4/folder/Archived',
     iosIcon: archiveOutline,
     mdIcon: archiveSharp,
+    iosArrow: arrowForwardCircleOutline,
+    mdArrow: arrowForwardCircleSharp
   },
   {
     title: 'Trash',
     url: '/tabs/tab4/folder/Trash',
     iosIcon: trashOutline,
     mdIcon: trashSharp,
+    iosArrow: arrowForwardCircleOutline,
+    mdArrow: arrowForwardCircleSharp
   },
   {
     title: 'Spam',
     url: '/tabs/tab4/folder/Spam',
     iosIcon: warningOutline,
     mdIcon: warningSharp,
+    iosArrow: arrowForwardCircleOutline,
+    mdArrow: arrowForwardCircleSharp
   },
 ];
 const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-const path = window.location.pathname.split('tabs/tab4/folder/')[1];
+const path = window.location.pathname.split('tabs/tab4/folder/Inbox')[1];
 if (path !== undefined) {
   selectedIndex.value = appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
 }
